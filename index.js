@@ -7,6 +7,10 @@ const cors = require('cors');
 
 const port = process.env.PORT || 5000;
 
+// middlewares
+const errorHandleMiddleware = require('./middlewares/error-handler');
+const notFound = require('./middlewares/not-found');
+
 // * db
 const connectDB = require('./db');
 
@@ -16,6 +20,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // * routes
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+// * store routes
+
+app.use(notFound);
+app.use(errorHandleMiddleware);
 
 const start = async () => {
   try {

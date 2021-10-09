@@ -11,6 +11,10 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "linebreak-style": [
+            "error",
+            "unix"
+        ]
     }
 }
