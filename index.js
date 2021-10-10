@@ -1,11 +1,13 @@
 // * imports
 require('dotenv').config();
+require('express-async-errors');
 const express = require('express');
 
 const app = express();
 const cors = require('cors');
 
 const port = process.env.PORT || 5000;
+const productsRouter = require('./routes/products');
 
 // middlewares
 const errorHandleMiddleware = require('./middlewares/error-handler');
@@ -25,6 +27,7 @@ app.get('/', (req, res) => {
 });
 
 // * store routes
+app.use('/api/v1/products', productsRouter);
 
 app.use(notFound);
 app.use(errorHandleMiddleware);
